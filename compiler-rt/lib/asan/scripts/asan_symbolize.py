@@ -1014,7 +1014,13 @@ class SysRootFilterPlugIn(AsanSymbolizerPlugIn):
         return True
 
     def filter_binary_path(self, path):
-        return self.sysroot_path + path
+        path_in_sysroot = self.sysroot_path + path
+        # Not all files reside in the sysroot, some are elsewhere (e.g. in the build directory).
+        # Thus, check first if file is present in sysroot and - if not - return the original path.
+        if os.path.exists(path_in_sysroot):
+            return path_in_sysroot
+        else:
+            return path
 
 
 class ModuleMapPlugIn(AsanSymbolizerPlugIn):
