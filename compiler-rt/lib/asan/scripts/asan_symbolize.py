@@ -1137,7 +1137,11 @@ if __name__ == "__main__":
             help="pattern to be cut from the result file path ",
         )
         parser.add_argument(
-            "-d", "--demangle", action="store_true", help="demangle function names"
+            "-d",
+            "--demangle",
+            action=argparse.BooleanOptionalAction,
+            default=True,
+            help="demangle function names",
         )
         parser.add_argument(
             "-c",
