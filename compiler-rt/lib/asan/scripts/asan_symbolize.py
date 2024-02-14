@@ -1000,9 +1000,10 @@ class SysRootFilterPlugIn(AsanSymbolizerPlugIn):
     def register_cmdline_args(self, parser):
         parser.add_argument(
             "-s",
+            default=os.environ["OECORE_TARGET_SYSROOT"],
             dest="sys_root",
             metavar="SYSROOT",
-            help="set path to sysroot for sanitized binaries",
+            help="set path to sysroot for sanitized binaries, default is $OECORE_TARGET_SYSROOT",
         )
 
     def process_cmdline_args(self, pargs):
