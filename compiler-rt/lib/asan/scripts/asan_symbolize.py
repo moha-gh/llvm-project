@@ -1134,7 +1134,10 @@ if __name__ == "__main__":
             "-d", "--demangle", action="store_true", help="demangle function names"
         )
         parser.add_argument(
-            "-c", metavar="CROSS_COMPILE", help="set prefix for binutils"
+            "-c",
+            default=os.environ["CROSS_COMPILE"],
+            metavar="CROSS_COMPILE",
+            help="set prefix for binutils, default is $CROSS_COMPILE",
         )
         parser.add_argument(
             "-l",
